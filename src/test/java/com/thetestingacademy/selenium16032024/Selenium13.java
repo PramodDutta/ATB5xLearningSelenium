@@ -6,33 +6,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
+import java.util.List;
 
-public class Selenium12 {
+public class Selenium13 {
 
-    // Locators
-    // 1. ID, ClassName, Name, byTag F(n) -> GetText and GetAttribute (Webelements)
-
-    // 2. LinkText & Partial Text
-    // 3.Css Selectors
-    // 4. Xpath
 
     @Test(groups = "QA")
     @Description("Verify the current URl, title of VWO app")
-    public void testVWOLogin12() {
+    public void testVWOLogin13() {
         WebDriver driver = new EdgeDriver();
         // 1. Open the URL .app.vwo.com/#/login](https://app.vwo.com/#/login)
         driver.get("https://app.vwo.com");
-//        WebElement anchor_tag = driver.findElement(By.linkText("Start a free trial"));
-        WebElement anchor_tag = driver.findElement(By.partialLinkText("Start a free"));
-        System.out.println(anchor_tag.getAttribute("href"));
-        anchor_tag.click();
-
+        // Question - Print all the anchor Tags on this vwo.com
+        // a tags and print the getText
+        List<WebElement> all_atags = driver.findElements(By.tagName("a"));
+        all_atags.get(0).click(); // start free trial
+        all_atags.get(1).click(); // 2nd one - vwo insights
+        all_atags.size(); // 2
+        for( WebElement element: all_atags){
+            System.out.println(element.getText());
+        }
 
 
         driver.close(); // Close the current window
 
 
     }
-
 
 }

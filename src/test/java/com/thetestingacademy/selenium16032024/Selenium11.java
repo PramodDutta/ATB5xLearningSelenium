@@ -52,7 +52,15 @@ public class Selenium11 {
         }
 
         WebElement error_msg = driver.findElement(By.className("notification-box-description"));
+        //<div
+        // class="notification-box-description"
+        // id="js-notification-box-msg"
+        // data-qa="rixawilomi">
+        // Your email, password, IP address or location did not match
+        // </div>
         String error_msg_text  = error_msg.getText();
+        String error_msg_attribute_dataqa  = error_msg.getAttribute("data-qa");
+        System.out.println(error_msg_attribute_dataqa);
 
         Assert.assertEquals(error_msg_text,"Your email, password, IP address or location did not match");
 
